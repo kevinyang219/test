@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.hibernate04.pojo.TPerson" table="T_PERSON" schema="SCOTT">
+        <id name="PId" type="java.lang.Integer">
+            <column name="P_ID" precision="3" scale="0" />
+            <generator class="sequence" >
+                  <param name="sequence">seq_t_person</param>
+           </generator>
+        </id>
+        <property name="PName" type="java.lang.String">
+            <column name="P_NAME" length="10" />
+        </property>
+       <many-to-one name="address" class="com.hibernate04.pojo.TAddress" column="A_ID"></many-to-one>
+    </class>
+</hibernate-mapping>

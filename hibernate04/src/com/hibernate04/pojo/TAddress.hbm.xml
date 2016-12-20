@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.hibernate04.pojo.TAddress" table="T_ADDRESS" schema="SCOTT">
+        <id name="AId" type="java.lang.Integer">
+            <column name="A_ID" precision="3" scale="0" />
+            <generator class="sequence" >
+            <param name="sequence">seq_t_address</param>
+            </generator>
+        </id>
+        <property name="ACity" type="java.lang.String">
+            <column name="A_CITY" length="10" />
+        </property>
+        <!-- inverse:外键维护方式默认是false,,由主表去维护true，由子表去维护 -->
+        <!-- 延迟加载  true是延迟加载，false是瞬时加载-->
+        <set name="persons"   cascade="all" inverse="true" lazy="true">
+    	<key  column="A_ID"></key>
+    	<one-to-many class="com.hibernate04.pojo.TPerson"></one-to-many>
+    	</set>
+    </class>
+</hibernate-mapping>
